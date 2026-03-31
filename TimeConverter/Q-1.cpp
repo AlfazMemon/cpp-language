@@ -20,7 +20,7 @@ public:
         int min = (Total_sec % 3600) / 60;
         int sec = Total_sec % 60;
 
-        cout<<"HH:MM:SS => ";
+        cout<<"\nHH:MM:SS => ";
         if (hour < 10)
         {
             cout << "0";
