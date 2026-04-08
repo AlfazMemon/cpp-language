@@ -13,6 +13,39 @@ class Train{
     public :
     static int TrainCount;
 
+    //Default constructor 
+    Train(){
+
+        TrainNumber = 0;
+        TrainName = "";
+        Source = "";
+        Destination = "";
+        TrainTime = "";
+        
+        TrainCount++;
+
+    }
+
+    //pera constructor 
+
+    Train (int num,string name,string sour,string Dest,string time){
+
+        TrainNumber = num ;
+        TrainName = name;
+        Source = sour ;
+        Destination = Dest ;
+        TrainTime = time ;
+        TrainCount++;
+
+    }
+
+    //Distructor
+
+    ~Train(){
+        TrainCount--;
+    }
+
+
     void inputTrainDetails(){
 
         cout<<"\n\nEnter Train Number :";
@@ -32,7 +65,7 @@ class Train{
         cout<<"Enter TrainTime :";
         getline(cin,TrainTime);
 
-        TrainCount++;
+        
         
     }
 
@@ -47,11 +80,69 @@ class Train{
      int TrainNo(){
         return TrainNumber;
     }
+
+    static int getTrainCount(){
+        return TrainCount;
+    }
+
+    
+    
 };
 int Train::TrainCount = 0;
+class Railway{
+
+    Train Trains[100];
+    int totaltrain = 0;
+
+    public:
+    void addTrain(){
+        if(totaltrain < 100){
+                Trains[totaltrain].inputTrainDetails();
+                totaltrain++;
+            }
+            else{
+                cout<<"Record system is full.!"<<endl;
+            }
+            
+    }
+    void DisplayallTrains(){
+
+         if(totaltrain == 0){
+
+                cout<<"No Train Record Found.!!"<<endl;
+            }
+            else{
+                for(int i=0;i<totaltrain;i++){
+                    cout<<"\n\nTrain "<<i+1<<" Details"<<endl;
+                    Trains[i].displayTrainDetails();
+                }
+            }
+    }
+    void SearchTrainByNumber(int number){
+
+        if(totaltrain == 0){
+
+                cout<<"No Train Record Found.!!"<<endl;
+            }
+
+            else{
+                
+                for(int i=0;i<totaltrain;i++){
+                    if(Trains[i].TrainNo() == number){
+                        Trains[i].displayTrainDetails();
+                    }
+              
+                    else{
+                    cout<<"No Train Record Found.!!"<<endl;
+                    }
+                }
+            }        
+    }
+
+};
 int main (){
 
-    Train T[100];
+    Railway system;
 
     int choice,i,SearchNo;
 
@@ -71,47 +162,20 @@ int main (){
         
         {
         case 1:
-            if(Train::TrainCount < 100){
-                T[Train::TrainCount].inputTrainDetails();
-            }
-            else{
-                cout<<"Record system is full.!"<<endl;
-            }
+            system.addTrain();
             break;
 
         case 2:
-            if(Train::TrainCount == 0){
-
-                cout<<"No Train Record Found.!!"<<endl;
-            }
-            else{
-                for(i=0;i<Train::TrainCount;i++){
-                    cout<<"\n\nTrain "<<i+1<<" Details"<<endl;
-                    T[i].displayTrainDetails();
-                }
-            }
+           system.DisplayallTrains();
             break;
         
         case 3:
-            if(Train::TrainCount == 0){
-
-                cout<<"No Train Record Found.!!"<<endl;
-            }
-
-            else{
-                cout<<"Enter Train Number to Search :";
+        
+         cout<<"Enter Train Number to Search :";
                 cin>>SearchNo;
-                for(i=0;i<Train::TrainCount;i++){
-                    if(T[i].TrainNo() == SearchNo){
-                        T[i].displayTrainDetails();
-                    }
-              
-                    else{
-                    cout<<"No Train Record Found.!!"<<endl;
-                    }
-                }
+            system.SearchTrainByNumber(SearchNo);
                 break;
-            }
+            
         
         case 4:
            cout<<"Exiting the system. Goodbye!"<<endl;
@@ -125,4 +189,5 @@ int main (){
     }
     while(choice != 4);
 
+    return 0;
 }
