@@ -3,7 +3,7 @@ using namespace std;
 class User{
 
     string Username;
-    long int number;
+    string number;
     string Location;
 
     public :
@@ -15,9 +15,8 @@ class User{
         getline(cin,Username);
 
         cout<<"Enter Phone Number :";
-        cin>>number;
+        getline(cin,number);
 
-        cin.ignore();
         cout<<"Enter Your Location :";
         getline(cin,Location);
     }
@@ -39,6 +38,7 @@ class Food{
     int foodQuntity;
     int price;
     int totalprice;
+    int totalBill=0;
 
     public :
 
@@ -46,13 +46,29 @@ class Food{
         price = 300;
 
         FoodName = "Pizza";
-        cout<<"Food Name : Pizza";
+        cout<<"Food Name : Pizza"<<endl;
         cout<<"Enter Quntity :";
         cin>>foodQuntity;
 
         totalprice = price * foodQuntity;
 
-        cout<<"Total Bill :"<<totalprice<<endl;
+        totalBill = totalBill + totalprice;
+
+        cout<<"Total Bill :"<<totalBill<<endl;
+    }
+
+     void Burger(){
+        price = 150;
+
+        FoodName = "Burger";
+        cout<<"Food Name : Burger"<<endl;
+        cout<<"Enter Quntity :";
+        cin>>foodQuntity;
+
+        totalprice = price * foodQuntity;
+
+        totalBill = totalBill + totalprice;
+        cout<<"Total Bill :"<<totalBill<<endl;
     }
     
 };
@@ -70,13 +86,17 @@ int main (){
     do{
         cout<<"\n\n||----FOOD MENU----||"<<endl;
         cout<<"Press 1 for Pizza \nPress 2 for Burger \nPress 3 for Pasta \nPress 4 for Dosa\nPress 5 for Exit"<<endl;
+        cout<<"Enter Your choice :";
+        cin>>choice;
 
         switch (choice)
         {
         case  1:
              f.Pizza();
             break;
-        
+        case  2:
+            f.Burger();
+            break;
         default:
             break;
         }
