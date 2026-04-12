@@ -73,6 +73,22 @@ class Food{
         cout<<"Total price of Burger :"<<totalprice<<endl;
         cout<<"Total Bill :"<<totalBill<<endl;
     }
+
+    void Pasta(){
+        price = 250;
+
+        FoodName = "Pasta";
+        cout<<"Food Name : Pasta"<<endl;
+        cout<<"Enter Quntity :";
+        cin>>foodQuntity;
+
+        totalprice = price * foodQuntity;
+
+
+        totalBill = totalBill + totalprice;
+        cout<<"Total price of Burger :"<<totalprice<<endl;
+        cout<<"Total Bill :"<<totalBill<<endl;
+    }
     
 };
 
@@ -100,6 +116,9 @@ int main (){
         case  2:
             f.Burger();
             break;
+        case 3:
+            f.Pasta();
+            break;    
         default:
             break;
         }
