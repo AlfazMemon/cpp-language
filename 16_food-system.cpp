@@ -151,6 +151,12 @@ class system:public User,public delivery{
 class final:public Food,public system{
 
 
+    public :
+
+    void bill(){
+        cout<<"Pizza\t"<<endl;
+    }
+
 
 
 
