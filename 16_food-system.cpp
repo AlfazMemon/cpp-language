@@ -35,22 +35,35 @@ class User{
 class Food{
 
     string FoodName;
-    int foodQuntity;
-    int price;
     int totalprice;
+
+   protected :
+    int pizzaqty=0;
+    int pizzaprice;
+    int bgqty=0;
+    int bgprice;
+    int dosaqty=0;
+    int dosaprice;
+    int pastaqty=0;
+    int pastaprice; 
     int totalBill=0;
+    int pizzatotal=0;
+    int bgtotal=0;
+    int pastatotal=0;
+    int dosatotal=0;
 
     public :
 
     void Pizza(){
-        price = 300;
+        pizzaprice = 300;
 
         FoodName = "Pizza";
         cout<<"Food Name : Pizza"<<endl;
         cout<<"Enter Quntity :";
-        cin>>foodQuntity;
+        cin>>pizzaqty;
 
-        totalprice = price * foodQuntity;
+        totalprice = pizzaprice * pizzaqty;
+        pizzatotal = totalprice;
 
         totalBill = totalBill + totalprice;
 
@@ -59,14 +72,15 @@ class Food{
     }
 
      void Burger(){
-        price = 150;
+        bgprice = 150;
 
         FoodName = "Burger";
         cout<<"Food Name : Burger"<<endl;
         cout<<"Enter Quntity :";
-        cin>>foodQuntity;
+        cin>>bgqty;
 
-        totalprice = price * foodQuntity;
+        totalprice = bgprice * bgqty;
+        bgtotal = totalprice;
 
 
         totalBill = totalBill + totalprice;
@@ -75,14 +89,15 @@ class Food{
     }
 
     void Pasta(){
-        price = 250;
+        pastaprice = 250;
 
         FoodName = "Pasta";
         cout<<"Food Name : Pasta"<<endl;
         cout<<"Enter Quntity :";
-        cin>>foodQuntity;
+        cin>>pastaqty;
 
-        totalprice = price * foodQuntity;
+        totalprice = pastaprice * pastaqty;
+        pastatotal = totalprice;
 
 
         totalBill = totalBill + totalprice;
@@ -91,14 +106,15 @@ class Food{
     }
 
     void Dosa(){
-        price = 180;
+        dosaprice = 180;
 
         FoodName = "Dosa";
         cout<<"Food Name : Dosa"<<endl;
         cout<<"Enter Quntity :";
-        cin>>foodQuntity;
+        cin>>dosaqty;
 
-        totalprice = price * foodQuntity;
+        totalprice = dosaprice * dosaqty;
+        dosatotal = totalprice;
 
 
         totalBill = totalBill + totalprice;
@@ -119,8 +135,9 @@ class delivery{
         cout<<"Enter Delivery Id :";
         cin>>Id;
 
+        cin.ignore();
         cout<<"Enter Delivery Boy Name :";
-        cin>>deliveryBoyName;
+        getline(cin,deliveryBoyName);
 
         cout<<"Enter phone no :";
         cin>>phone;
@@ -136,7 +153,7 @@ class delivery{
 
 };
 
-class system:public User,public delivery{
+class system:public User,public Food,public delivery{
 
     public:
 
@@ -148,13 +165,17 @@ class system:public User,public delivery{
     }
     
 };
-class final:public Food,public system{
+class final:public system{
 
 
     public :
 
     void bill(){
-        cout<<"Pizza\t"<<endl;
+        cout<<"Pizza\t"<<pizzaprice<<"\t"<<pizzaqty<<"\t"<<pizzatotal<<endl;
+        cout<<"Burger\t"<<endl;
+        cout<<"Pasta\t"<<endl;
+        cout<<"Dosa\t"<<endl;
+        cout<<"Total Bill :"<<totalBill<<endl;
     }
 
 
@@ -164,14 +185,12 @@ class final:public Food,public system{
 int main (){
 
 
-    User u;
-    Food f;
-    delivery d;
+    
     int choice;
-    final f1;
+    final f;
     
 
-    u.getUserData();
+    f.getUserData();
 
     do{
         cout<<"\n\n||----FOOD MENU----||"<<endl;
@@ -191,14 +210,16 @@ int main (){
             f.Pasta();
             break;  
         case 4:
-            f.Dosa();      
+            f.Dosa();  
+            break;    
         default:
             break;
         }
     }
     while(choice !=5 );
-    d.getDelivery();
-    f1.server();
+    f.getDelivery();
+    f.server();
+    f.bill();
     
 
 
