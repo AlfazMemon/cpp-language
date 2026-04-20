@@ -171,9 +171,11 @@ class final:public system{
     public :
 
     void bill(){
+
+        cout<<"Food Name\t"<<"price\t"<<"Qty\t"<<"Total"<<endl;
       if (pizzaqty > 0){
 
-        cout<<"\n\nPizza\t"<<pizzaprice<<"\t"<<pizzaqty<<"\t"<<pizzatotal<<endl;
+        cout<<"\n\nPizza\t\t"<<pizzaprice<<"\t"<<pizzaqty<<"\t"<<pizzatotal<<endl;
 
       } 
 
